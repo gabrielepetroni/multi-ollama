@@ -2,8 +2,10 @@ from ollama import chat
 from ollama import ChatResponse
 from ollama import Client
 import logging
+import os
 
-__contextPath__ = "contexts/"
+__loggerPath__ = "agent/logs/"
+__contextPath__ = "agent/contexts/"
 
 
 class Agent:
@@ -12,7 +14,7 @@ class Agent:
         self.logger = logging.getLogger("Agent "+name)
         self.logger.setLevel(logging.DEBUG)
         fh = logging.FileHandler(
-            "logs/agent_"+name+".log", encoding="utf-8", mode="w")
+            os.path.join(__loggerPath__,"agent_"+name+".log") ,encoding="utf-8", mode="w")
         fh.setLevel(logging.DEBUG)
 
         formatter = logging.Formatter(
